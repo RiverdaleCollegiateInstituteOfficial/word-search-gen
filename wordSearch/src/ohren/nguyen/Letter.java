@@ -21,7 +21,6 @@ public class Letter {
 	 */
 	public Letter(char c) {
 		character = c;
-
 		// TODO: make robust, throw exceptions and stuff
 	}
 
