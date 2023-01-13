@@ -1,7 +1,9 @@
 package ohren.nguyen;
 
+
 import java.util.ArrayList;
  
+
 /**
  * Models a word as an ArrayList of Letters 
  *
