@@ -8,14 +8,14 @@ public class Driver {
 		System.out.println("goodbye");
 		System.out.println("happy");
 		System.out.println("personal comp");
-<<<<<<< HEAD
+
 		
 		// Creates a Letter object of each alphabet letter (uppercase)
 		for (int n = 65; n < 91; n++) {
 			Letter l = new Letter((char)n);
 			System.out.println(l);
 		}
-=======
+
 		*/
 		
 		
@@ -47,6 +47,6 @@ public class Driver {
 		char c = r.getChar();
 		System.out.println(name + name2);
 		System.out.println(name + c);
->>>>>>> branch 'master' of https://github.com/RiverdaleCollegiateInstituteOfficial/word-search-gen.git
+
 	}
 }
