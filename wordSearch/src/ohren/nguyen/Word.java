@@ -72,4 +72,5 @@ public class Word implements Comparable<Word>{
 		
 		return 0;
 	}
+}
 
