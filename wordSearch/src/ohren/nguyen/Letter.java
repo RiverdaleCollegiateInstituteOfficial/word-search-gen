@@ -2,17 +2,16 @@ package ohren.nguyen;
 
 import java.util.Random;
 
+
 /**
  * Models a letter of the alphabet
- * 
- * @author 345835607
- *
  */
 public class Letter {
 	private char character; // should be an upper case letter
 	
 	// TODO make work for lower case letter, will probably need a boolean instance variable,
 	//      or possibly a shared one so that the case is consistent
+	
 	
 	/**
 	 * Constructor for a letter
@@ -24,6 +23,7 @@ public class Letter {
 		// TODO: make robust, throw exceptions and stuff
 	}
 
+	
 	/**
 	 * Constructor for letter that chooses a random upper case character
 	 */
@@ -35,6 +35,7 @@ public class Letter {
 		character = c;
 	}
 
+	
 	/**
 	 * getter for character
 	 * 
@@ -44,6 +45,7 @@ public class Letter {
 		return character;
 	}
 
+	
 	/**
 	 * setter for character
 	 * 
@@ -55,6 +57,7 @@ public class Letter {
 		// TODO make robust
 	}
 
+	
 	/**
 	 * toString function for Letter, 
 	 * @return the character as a String **AND NOT A CHARACTER**
@@ -64,6 +67,7 @@ public class Letter {
 		return Character.toString(character);
 	}
 
+	
 	/**
 	 * Compares an object to the Letter
 	 * @return is the object was a Letter with the same character
@@ -77,9 +81,8 @@ public class Letter {
 				return true;
 			}
 		}
-
 		return false;
-
 	}
 
+	
 }

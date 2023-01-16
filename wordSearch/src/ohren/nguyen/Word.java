@@ -1,7 +1,9 @@
 package ohren.nguyen;
 
+
 import java.util.ArrayList;
  
+
 /**
  * Models a word as an ArrayList of Letters 
  *
@@ -70,4 +72,4 @@ public class Word implements Comparable<Word>{
 		
 		return 0;
 	}
-}
+
