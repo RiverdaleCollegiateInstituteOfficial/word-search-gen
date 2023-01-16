@@ -1,6 +1,7 @@
 package ohren.nguyen;
 
 import java.util.ArrayList;
+import java.lang.Math;
 import java.util.Collections;
 import java.util.Random;
 
@@ -72,22 +73,97 @@ public class Grid {
 	
 	/**
 	 * places all of the words in an arraylist of words
-	 * @param words the arraylist of Words
+	 * @param words the arraylist of Words+
 	 */
 	public void placeWords(ArrayList<Word> words) {
 		Collections.sort(words);
 		
-		boolean orientation;
-		int limiting; // this could be x or y, if the word is horizontal than this is x
-		int unlimiting; // this is the other direction
+		for (Word word : words) {
+			while (!place(word)) {
+				
+			}
+	}
+}
+
+
+	private boolean place(Word word) {
 		Random rand = new Random();
 		
-		for (Word word : words) {
-			
-			limiting = rand.nextInt(0, letters.length - word.getLength());
-			unlimiting = rand.nextInt(0, letters.length);
-			
-			
+		boolean isVertical = rand.nextBoolean(); // false is horizontal, true is vertical
+		
+		ArrayList<Integer> options = findEmpty(word, isVertical);
+		
+		for 
+		
+		return false;
+	}
+
+
+	private ArrayList<Integer> findEmpty(Word word, boolean isVertical) {
+		ArrayList<Integer> options = new ArrayList<>();
+		int count = 0;
+		int count2 = 0;
+		int maxSpace = 0;
+		
+		if (isVertical) {
+			for (int x=0; x<letters.length; x++) {
+				count = 0;
+				count2 = 0;
+				for (int y=0; y<letters[0].length; y++) {
+					if (letters[x][y] == null) {
+						count++;
+					}
+					
+					else {
+						if (count > count2) {
+							count2 = count;
+							count = 0;
+						}
+						
+						else {
+							count = 0;
+						}
+					}
+				}
+				
+				maxSpace = Math.max(count, count2);
+				
+				if (maxSpace >= word.getLength()) {
+					options.add(x);
+				}
+			}
 		}
+		
+		else {
+			for (int y=0; y<letters.length; y++) {
+				count = 0;
+				count2 = 0;
+				for (int x=0; x<letters[0].length; x++) {
+					if (letters[x][y] == null) {
+						count++;
+					}
+					
+					else {
+						if (count > count2) {
+							count2 = count;
+							count = 0;
+						}
+						
+						else {
+							count = 0;
+						}
+					}
+				}
+				
+				maxSpace = Math.max(count, count2);
+				
+				if (maxSpace >= word.getLength()) {
+					options.add(y);
+				}
+			}
+		}
+		
+		return options;
+		
 	}
 }
