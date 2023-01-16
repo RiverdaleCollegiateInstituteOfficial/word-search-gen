@@ -93,7 +93,7 @@ public class Grid {
 		
 		ArrayList<Integer> options = findEmpty(word, isVertical);
 		
-		for 
+		
 		
 		return false;
 	}
