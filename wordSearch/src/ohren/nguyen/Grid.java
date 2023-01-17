@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Grid {
 	Letter[][] letters;
+	ArrayList<Word> didNotFit;
 	
 	/**
 	 * Constructor for the Grid
@@ -15,6 +16,7 @@ public class Grid {
 	 */
 	public Grid(int d) {
 		letters = new Letter[d][d];
+		didNotFit = new ArrayList<>();
 	}
 	
 	
@@ -38,7 +40,14 @@ public class Grid {
 		return letters.length;
 	}
 	
-	
+	public String getDidNotFit() {
+		String didNotFitStr = "";
+		for (Word word : didNotFit) {
+			didNotFitStr += word.toString() + "\n";
+		}
+		
+		return didNotFitStr;
+	}
 	/**
 	 * @return the grid as a String
 	 */
@@ -78,7 +87,6 @@ public class Grid {
 	 */
 	public void placeWords(ArrayList<Word> words) {
 		Collections.sort(words);
-		ArrayList<Word> didNotFit = new ArrayList<>();
 		
 		for (Word word : words) {
 			boolean worked = place(word);
