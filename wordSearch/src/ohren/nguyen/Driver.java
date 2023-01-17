@@ -17,19 +17,52 @@ public class Driver {
 		}
 		*/
 		
+		
+		//ArrayList<Wordlist> words_list = new ArrayList<>();
+		
+		
+		/** doesn't take second wordlist
 		File file = new File("list_file.txt");
 		Scanner in = new Scanner(file);
-
+		String f = "";
+		
 		ArrayList<String> words = new ArrayList<>();
-		/**
+		
 		while (in.hasNext()) {
-			System.out.println(in.nextLine());
+			String line = in.nextLine();
+			if (line.length() == 0) {
+				System.out.println(words);
+				words.clear();
+			}
+			else {
+				words.add(line);
+			}
 		}
+		in.close();	
 		**/
 		
 		
+		
+		
+		// MENU INTERFACE
+		/**
 		System.out.println("WORD SEARCH GENERATOR");
 		System.out.println("---------------------");
-		System.out.println("How ");
+		**/
+		
+		
+		Wordlist words = new Wordlist();
+		
+		Scanner in2 = new Scanner(System.in);
+		
+		// change x-value
+		for (int x = 0; x < 3; x++) {
+			String w = "";
+			w = in2.nextLine();
+			Word word = new Word(w);
+			words.setWord(word);
+		}
+		
+		words.getList();
 	}
 }
