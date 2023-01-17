@@ -52,6 +52,7 @@ public class Driver {
 		
 		
 		Wordlist words = new Wordlist();
+		Grid grid = new Grid(10);
 		
 		Scanner in2 = new Scanner(System.in);
 		
@@ -64,5 +65,11 @@ public class Driver {
 		}
 		
 		words.getList();
+		
+		grid.placeWords(words);
+		grid.fill();
+		
+		System.out.println(grid);
+		
 	}
 }

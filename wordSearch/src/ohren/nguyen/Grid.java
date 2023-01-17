@@ -85,15 +85,26 @@ public class Grid {
 	 * places all of the words in an arraylist of words
 	 * @param words the arraylist of Words+
 	 */
-	public void placeWords(ArrayList<Word> words) {
-		Collections.sort(words);
+	public void placeWords(Wordlist words) {
+		//Collections.sort(words);
 		
+		/**
 		for (Word word : words) {
 			boolean worked = place(word);
 			
 			if (!worked) {
 				didNotFit.add(word);
 			}
+		**/
+		
+		for (int i = 0; i < 3; i++) {
+			Word word = words.getWord(i);
+			
+boolean worked = place(word);
+			
+			if (!worked) {
+				didNotFit.add(word);
+		}
 	}
 }
 
