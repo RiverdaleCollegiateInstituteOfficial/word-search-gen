@@ -11,9 +11,17 @@ public class Wordlist {
 	 * Constructor for a Wordlist
 	 * @param s is the name of the Wordlist
 	 */
+	Wordlist(String s) {
+		list = new ArrayList<>();
+		name = s;
+	}
+	
+	/**
+	 * 
+	 * @param s
+	 */
 	Wordlist() {
 		list = new ArrayList<>();
-		//name = s;
 	}
 	
 	

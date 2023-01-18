@@ -18,29 +18,33 @@ public class Driver {
 		*/
 		
 		
-		//ArrayList<Wordlist> words_list = new ArrayList<>();
+		// the array list with all of the different word lists
+		ArrayList<Wordlist> words_list = new ArrayList<>();
 		
-		
-		/** doesn't take second wordlist
+		// the file containing all the word lists
 		File file = new File("list_file.txt");
 		Scanner in = new Scanner(file);
-		String f = "";
 		
-		ArrayList<String> words = new ArrayList<>();
+		// all the words in one wordlist + the name from the file / one section
+		ArrayList<String> tempWords = new ArrayList<>();
 		
+		
+		// while there still is a line in the file to read
 		while (in.hasNext()) {
 			String line = in.nextLine();
-			if (line.length() == 0) {
-				System.out.println(words);
-				words.clear();
+			// if the line is an empty line, we have finished reading one wordlist in the file
+			if (line.equals("")) {
+				System.out.println(tempWords);
+				Wordlist w = new Wordlist(tempWords.get(0));
+				tempWords.remove(0);
+				tempWords.clear();
 			}
 			else {
-				words.add(line);
+				tempWords.add(line);
 			}
 		}
+		System.out.println(tempWords);
 		in.close();	
-		**/
-		
 		
 		
 		
@@ -51,6 +55,7 @@ public class Driver {
 		**/
 		
 		
+		/**
 		Wordlist words = new Wordlist();
 		Grid grid = new Grid(10);
 		
@@ -70,6 +75,7 @@ public class Driver {
 		grid.fill();
 		
 		System.out.println(grid);
-		
+		System.out.println(grid.getDidNotFit());
+		**/
 	}
 }
