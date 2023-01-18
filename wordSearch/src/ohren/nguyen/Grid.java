@@ -106,7 +106,7 @@ public class Grid {
 			worked = place(word);
 			
 			if (!worked) {
-				if (tries < 2) {
+				if (tries < 99) {
 					worked = place(word);
 					tries++;
 				}
@@ -143,7 +143,8 @@ public class Grid {
 			
 			letterIndex++;
 			
-			if (letterIndex - 1 == word.getLength()) {
+			if (letterIndex == word.getLength()) {
+				System.out.println("worked");
 				return true;
 			}
 		}
