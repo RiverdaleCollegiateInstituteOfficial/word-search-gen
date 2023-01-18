@@ -15,7 +15,7 @@ public class Grid {
 	 * @param d the side of the square Grid
 	 */
 	public Grid(int d) {
-		letters = new Letter[d][d];
+		letters = new Letter[d][d]; // TODO change to be full of spaces instead of null
 		didNotFit = new ArrayList<>();
 	}
 	
@@ -28,7 +28,7 @@ public class Grid {
 	 */
 	public void placeLetter(Letter l, int x, int y) {
 		// consider making this private
-		letters[x][y] = l;
+		letters[x][y] = l; // haven't used this, might delete
 	}
 	
 	
@@ -40,6 +40,11 @@ public class Grid {
 		return letters.length;
 	}
 	
+	
+	/**
+	 * Makes a string of words that did not fit in the grid
+	 * @return
+	 */
 	public String getDidNotFit() {
 		String didNotFitStr = "";
 		for (Word word : didNotFit) {
@@ -48,6 +53,8 @@ public class Grid {
 		
 		return didNotFitStr;
 	}
+	
+	
 	/**
 	 * @return the grid as a String
 	 */
@@ -81,6 +88,7 @@ public class Grid {
 			}
 		}
 	}
+
 	
 	/**
 	 * places all of the words in an arraylist of words
@@ -100,6 +108,7 @@ public class Grid {
 			if (!worked) {
 				if (tries < 2) {
 					worked = place(word);
+					tries++;
 				}
 				
 				else {
@@ -133,6 +142,10 @@ public class Grid {
 			}
 			
 			letterIndex++;
+			
+			if (letterIndex - 1 == word.getLength()) {
+				return true;
+			}
 		}
 	
 		
@@ -151,15 +164,15 @@ public class Grid {
 		HashMap<Integer, Integer> options = new HashMap<>();
 		int startingIndex = 0;
 		int tempStartingIndex = 0;
-		int count = 0;
-		int tempMax = 0;
+		int count = 0; // the current number of empty spaces in a row
+		int tempMax = 0; // the longest length of blank spaces so far
 		int maxSpace = 0;
 		
 		// if the word is to be placed vertically find the columns with enough space for the word
 		if (isVertical) {
 			for (int x=0; x<letters.length; x++) {
-				count = 0; // the current number of empty spaces in a row
-				tempMax = 0; // the longest length of blank spaces so far
+				count = 0; 
+				tempMax = 0; 
 				for (int y=0; y<letters[0].length; y++) {
 					if (letters[x][y] == null) {
 						count++; // if there is not a letter there yet, increase the count
@@ -181,11 +194,21 @@ public class Grid {
 					}
 				}
 				
-				maxSpace = Math.max(count, tempMax); // the longest contiguous stretch of empty squares
+				//maxSpace = Math.max(count, tempMax); // the longest contiguous stretch of empty squares
+				
+				if (count > tempMax) {
+					maxSpace = count;
+					startingIndex = tempStartingIndex;
+				}
+				
+				else {
+					maxSpace = tempMax;
+				}
 				
 				if (maxSpace >= word.getLength()) {
 					options.put(x, startingIndex); // add to the possible indices
 				}
+				
 			}
 		}
 		
@@ -214,7 +237,16 @@ public class Grid {
 					}
 				}
 				
-				maxSpace = Math.max(count, tempMax);
+				//maxSpace = Math.max(count, tempMax);
+				
+				if (count > tempMax) {
+					maxSpace = count;
+					startingIndex = tempStartingIndex;
+				}
+				
+				else {
+					maxSpace = tempMax;
+				}
 				
 				if (maxSpace >= word.getLength()) {
 					options.put(y, startingIndex);
