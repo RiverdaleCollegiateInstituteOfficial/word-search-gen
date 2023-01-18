@@ -51,6 +51,7 @@ public class Grid {
 	/**
 	 * @return the grid as a String
 	 */
+	@Override
 	public String toString() {
 	
 		//add something to check if full before trying to return a string, and throw exception if empty
@@ -87,23 +88,23 @@ public class Grid {
 	 */
 	public void placeWords(Wordlist words) {
 		//Collections.sort(words);
-		
-		/**
-		for (Word word : words) {
-			boolean worked = place(word);
-			
-			if (!worked) {
-				didNotFit.add(word);
-			}
-		**/
+		int tries;
+		boolean worked;
 		
 		for (int i = 0; i < 3; i++) {
+			tries = 0;
 			Word word = words.getWord(i);
 			
-boolean worked = place(word);
+			worked = place(word);
 			
 			if (!worked) {
-				didNotFit.add(word);
+				if (tries < 2) {
+					worked = place(word);
+				}
+				
+				else {
+					didNotFit.add(word);
+				}
 		}
 	}
 }
