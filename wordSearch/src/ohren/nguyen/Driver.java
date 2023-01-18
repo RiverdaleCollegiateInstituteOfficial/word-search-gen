@@ -17,7 +17,7 @@ public class Driver {
 		}
 		*/
 		
-		
+		/**
 		// the array list with all of the different word lists
 		ArrayList<Wordlist> words_list = new ArrayList<>();
 		
@@ -46,7 +46,7 @@ public class Driver {
 		System.out.println(tempWords);
 		in.close();	
 		
-		
+		*/
 		
 		// MENU INTERFACE
 		/**
@@ -55,9 +55,9 @@ public class Driver {
 		**/
 		
 		
-		/**
+		
 		Wordlist words = new Wordlist();
-		Grid grid = new Grid(10);
+		Grid grid = new Grid(15);
 		
 		Scanner in2 = new Scanner(System.in);
 		
@@ -76,6 +76,6 @@ public class Driver {
 		
 		System.out.println(grid);
 		System.out.println(grid.getDidNotFit());
-		**/
+		
 	}
 }
