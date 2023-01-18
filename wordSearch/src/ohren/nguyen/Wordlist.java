@@ -29,7 +29,7 @@ public class Wordlist {
 	
 	
 	public Word getWord(int i) {
-		return list.get(0);
+		return list.get(i);
 	}
 	
 	
