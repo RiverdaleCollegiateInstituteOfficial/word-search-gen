@@ -37,13 +37,17 @@ public class Driver {
 				System.out.println(tempWords);
 				Wordlist w = new Wordlist(tempWords.get(0));
 				tempWords.remove(0);
+				for (String wo: tempWords) {
+					Word word = new Word(wo);
+					w.setWord(word);
+				}
 				tempWords.clear();
 			}
 			else {
 				tempWords.add(line);
 			}
 		}
-		System.out.println(tempWords);
+		//System.out.println(tempWords);
 		in.close();	
 		
 		
