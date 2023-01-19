@@ -1,12 +1,12 @@
 Foods
-Ramen
-Candy
-Pizza
-Cheese
-Cake
+ramen
+candy
+pizza
+cheese
+cake
 
-Sports
-Soccer
-Cricket
-Rugby
-Track
+sports
+soccer
+cricket
+rugby
+track
