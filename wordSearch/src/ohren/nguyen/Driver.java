@@ -17,7 +17,7 @@ public class Driver {
 		}
 		*/
 		
-		/**
+		
 		// the array list with all of the different word lists
 		ArrayList<Wordlist> words_list = new ArrayList<>();
 		
@@ -34,23 +34,32 @@ public class Driver {
 			String line = in.nextLine();
 			// if the line is an empty line, we have finished reading one wordlist in the file
 			if (line.equals("")) {
-				System.out.println(tempWords);
 				Wordlist w = new Wordlist(tempWords.get(0));
 				tempWords.remove(0);
 				for (String wo: tempWords) {
 					Word word = new Word(wo);
 					w.setWord(word);
 				}
+				words_list.add(w);
 				tempWords.clear();
 			}
 			else {
 				tempWords.add(line);
 			}
 		}
-		//System.out.println(tempWords);
+		System.out.println(words_list.get(0));
+		System.out.println(words_list.get(1));
 		in.close();	
 		
-		*/
+		
+		Grid grid = new Grid(15);
+		grid.placeWords(words_list.get(0));
+		grid.fill();
+		
+		System.out.println(grid);
+		System.out.println(grid.getDidNotFit());
+		
+		
 		
 		// MENU INTERFACE
 		/**
@@ -59,7 +68,7 @@ public class Driver {
 		**/
 		
 		
-		
+		/**
 		Wordlist words = new Wordlist();
 		Grid grid = new Grid(10);
 		
@@ -80,6 +89,6 @@ public class Driver {
 		
 		System.out.println(grid);
 		System.out.println(grid.getDidNotFit());
-		
+		**/
 	}
 }

@@ -41,14 +41,11 @@ public class Wordlist {
 	}
 	
 	
-	
-	/**
-	 * i'll add the rest
 	@Override
 	public String toString() {
-		return name + "\n" + list;
+		return name + ": " + list;
 	}
-	**/
+	
 	
 	
 }
