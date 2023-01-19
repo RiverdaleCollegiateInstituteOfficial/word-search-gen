@@ -1,6 +1,7 @@
 package ohren.nguyen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.lang.Math;
 import java.util.Collections;
@@ -105,14 +106,16 @@ public class Grid {
 			
 			worked = place(word);
 			
-			if (!worked) {
-				if (tries < 99) {
+			while (!worked) {
+				if (tries < 5) {
 					worked = place(word);
 					tries++;
 				}
 				
 				else {
 					didNotFit.add(word);
+					System.out.println(word);
+					worked = true; // this isn't really true, but we need to get out of the loop
 				}
 		}
 	}
@@ -121,12 +124,19 @@ public class Grid {
 
 	private boolean place(Word word) {
 		Random rand = new Random();
-		
 		boolean isVertical = rand.nextBoolean(); // false is horizontal, true is vertical
+		// copy letters array, in a way that makes another array, not a reference
+		// use this array to attempt to place words, only update the actual array if it works
+		// this should probably be its own method
 		
 		// get the possible indices for placing the word and choose one randomly
 		HashMap<Integer, Integer> options = findEmpty(word, isVertical);
 		ArrayList<Integer> keysAsArray = new ArrayList<Integer>(options.keySet());
+		
+		if (keysAsArray.size() == 0) {
+			return false;
+		}
+		
 		int choice = keysAsArray.get(rand.nextInt(keysAsArray.size()));
 		
 
@@ -149,6 +159,7 @@ public class Grid {
 			}
 		}
 	
+		// TODO undo changes if did not work
 		
 		return false;
 	}
@@ -206,6 +217,8 @@ public class Grid {
 					maxSpace = tempMax;
 				}
 				
+				System.out.format("%s: max: %d column: %d starting: %d\n", word, maxSpace, x, startingIndex);
+				
 				if (maxSpace >= word.getLength()) {
 					options.put(x, startingIndex); // add to the possible indices
 				}
@@ -238,8 +251,6 @@ public class Grid {
 					}
 				}
 				
-				//maxSpace = Math.max(count, tempMax);
-				
 				if (count > tempMax) {
 					maxSpace = count;
 					startingIndex = tempStartingIndex;
@@ -248,6 +259,8 @@ public class Grid {
 				else {
 					maxSpace = tempMax;
 				}
+				
+				System.out.format("%s: max: %d row: %d starting: %d\n", word, maxSpace, y, startingIndex);
 				
 				if (maxSpace >= word.getLength()) {
 					options.put(y, startingIndex);
