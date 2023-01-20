@@ -7,27 +7,37 @@ public class Wordlist {
 	private ArrayList<Word> list;
 	
 	
-	/**
-	 * Constructor for a Wordlist
-	 * @param s is the name of the Wordlist
-	 */
 	Wordlist(String s) {
-		list = new ArrayList<>();
 		name = s;
+		list = new ArrayList<>();
 	}
 	
-	/**
-	 * 
-	 * @param s
-	 */
+	
 	Wordlist() {
 		list = new ArrayList<>();
 	}
 	
 	
-	//take out later
-	public void getList() {
-		System.out.println(list);
+	// *** START OF METHODS *** \\
+	
+	
+	public String getName() {
+		return name;
+	}
+	
+	
+	public int getLength() {
+		return list.size();
+	}
+	
+	
+	public Word getWord(int n) {
+		return list.get(n);
+	}
+	
+	
+	public void setName(String n) {
+		name = n;
 	}
 	
 	
@@ -36,16 +46,18 @@ public class Wordlist {
 	}
 	
 	
-	public Word getWord(int i) {
-		return list.get(i);
-	}
-	
-	
 	@Override
 	public String toString() {
-		return name + ": " + list;
+		/* STYLE ONE
+		String output = name + ": ";
+		for (int x = 0; x < list.size(); x++) {
+			output += "\n" + list.get(x);
+		}
+		return output;
+		*/
+		return name + " " + list;
 	}
 	
 	
-	
+	// *** END OF METHODS *** \\
 }

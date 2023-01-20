@@ -1,9 +1,7 @@
 package ohren.nguyen;
 
-
 import java.util.ArrayList;
  
-
 /**
  * Models a word as an ArrayList of Letters 
  *
@@ -44,15 +42,6 @@ public class Word implements Comparable<Word>{
 	}
 	
 	
-	public boolean equals(Object o) {
-		if (o instanceof Word) {
-			//if 
-		}
-		
-		return false;
-	}
-	
-	
 	/**
 	 * @return word as a String
 	 */
@@ -66,11 +55,9 @@ public class Word implements Comparable<Word>{
 		if (word.length() > w.getLength()) {
 			return 1;
 		}
-		
 		else if (word.length() < w.getLength()) {
 			return -1;
 		}
-		
 		return 0;
 	}
 }
