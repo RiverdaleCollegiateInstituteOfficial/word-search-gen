@@ -53,10 +53,10 @@ public class Word implements Comparable<Word>{
 	@Override
 	public int compareTo(Word w) {
 		if (word.length() > w.getLength()) {
-			return 1;
+			return -1;
 		}
 		else if (word.length() < w.getLength()) {
-			return -1;
+			return 1;
 		}
 		return 0;
 	}

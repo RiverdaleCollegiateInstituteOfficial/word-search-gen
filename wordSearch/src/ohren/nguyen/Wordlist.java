@@ -1,6 +1,7 @@
 package ohren.nguyen;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Wordlist {
 	private String name;
@@ -56,6 +57,10 @@ public class Wordlist {
 		return output;
 		*/
 		return name + " " + list;
+	}
+	
+	public void sort() {
+		Collections.sort(list);
 	}
 	
 	

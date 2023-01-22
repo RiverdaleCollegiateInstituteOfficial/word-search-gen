@@ -241,12 +241,17 @@ public class Driver {
 	 */
 	public static void makeGrid(Wordlist w){
 		space();
-		Grid grid = new Grid(w.getLength());
+		
+		// sort wordlist to find longest word and set the grid size to the length of the longest word plus 2
+		w.sort();
+		
+		Grid grid = new Grid(w.getWord(0).getLength()+2);
 		grid.placeWords(w);
 		grid.fill();
 		System.out.println(grid);
 		
 		System.out.println(w); // for testing
+		System.out.println(grid.getDidNotFit()); // see what didn't fit, might want to label later
 		space();
 	}
 	

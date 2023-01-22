@@ -99,32 +99,45 @@ public class Grid {
 		//Collections.sort(words);
 		int tries;
 		boolean worked;
+		Random rand = new Random();
+		boolean isVertical = rand.nextBoolean(); // false is horizontal, true is vertical
 		
-		for (int i = 0; i < 3; i++) {
-			tries = 0;
+		for (int i = 0; i < words.getLength(); i++) {
+			//tries = 0;
 			Word word = words.getWord(i);
+			isVertical = !isVertical; //always attempt to place the next word in the opposite orientation
 			
+			worked = place(word, isVertical, false);
+			
+			if (!worked) {
+				didNotFit.add(word);
+			}
+			
+			/*
 			worked = place(word);
-			
-			while (!worked) {
-				if (tries < 5) {
+			while (!worked ) {
+			if (tries < 5) {
 					worked = place(word);
 					tries++;
 				}
 				
-				else {
-					didNotFit.add(word);
-					System.out.println(word);
-					worked = true; // this isn't really true, but we need to get out of the loop
+			else {
+				didNotFit.add(word);
+				System.out.println(word);
+				worked = true; // this isn't really true, but we need to get out of the loop
 				}
+			
+			}
+			*/
+
 		}
 	}
-}
 
 
-	private boolean place(Word word) {
+
+	private boolean place(Word word, boolean isVertical, boolean repeatAttempt) {
 		Random rand = new Random();
-		boolean isVertical = rand.nextBoolean(); // false is horizontal, true is vertical
+
 		// copy letters array, in a way that makes another array, not a reference
 		// use this array to attempt to place words, only update the actual array if it works
 		// this should probably be its own method
@@ -134,6 +147,14 @@ public class Grid {
 		ArrayList<Integer> keysAsArray = new ArrayList<Integer>(options.keySet());
 		
 		if (keysAsArray.size() == 0) {
+			// if only one orientation has been tried, try the other one
+			if (!repeatAttempt) {
+				System.out.println(word + ", " + isVertical + ": no spots");
+				isVertical = !isVertical;
+				return place(word, isVertical, true);
+			}
+			
+			System.out.println(word + ", " + isVertical + ": no spots");
 			return false;
 		}
 		
@@ -141,27 +162,28 @@ public class Grid {
 		
 
 		// place each letter in the word
-		int letterIndex = 0;
-		for (int i=options.get(choice); i<word.getLength(); i++) {
+		//int letterIndex = 0;
+		int gridIndex = options.get(choice);
+		for (int i=0; i<word.getLength(); i++) {
+			
+			if (gridIndex >= letters.length) {
+				System.out.println(word + ", " + options.get(choice) + ": grid out of length");
+				return false;
+			}
+			
 			if (isVertical) {
-				letters[choice][i] = word.getLetter(letterIndex);
+				letters[choice][gridIndex] = word.getLetter(i);
 			}
 			
 			else {
-				letters[i][choice] = word.getLetter(letterIndex);
+				letters[gridIndex][choice] = word.getLetter(i);
 			}
 			
-			letterIndex++;
-			
-			if (letterIndex == word.getLength()) {
-				System.out.println("worked");
-				return true;
-			}
+			gridIndex++;
 		}
-	
-		// TODO undo changes if did not work
 		
-		return false;
+		System.out.println(word + " placed");
+		return true;
 	}
 
 
@@ -177,96 +199,129 @@ public class Grid {
 		int startingIndex = 0;
 		int tempStartingIndex = 0;
 		int count = 0; // the current number of empty spaces in a row
-		int tempMax = 0; // the longest length of blank spaces so far
 		int maxSpace = 0;
+		boolean checked = false;
+		/*
+		// if word is to be placed vertically find the columns with enough space for the word
+		if (isVertical) {
+			for (int x=0; x<letters.length; x++) {
+				count = 0;
+				maxSpace = 0;
+				
+				// check each spot in column to see if it is empty
+				for (int y=0; y<letters[0].length; y++) {
+					if (letters[x][y] == null) {
+						count++;
+					}
+					
+					
+					else {
+						if (count > maxSpace) {
+							maxSpace = count;
+							count = 0;
+						}
+					}
+				}
+			}
+		}
+		*/
 		
 		// if the word is to be placed vertically find the columns with enough space for the word
 		if (isVertical) {
 			for (int x=0; x<letters.length; x++) {
 				count = 0; 
-				tempMax = 0; 
+				maxSpace = 0;
+				startingIndex = 0;
+				tempStartingIndex = 0;
 				for (int y=0; y<letters[0].length; y++) {
+					checked = false;
 					if (letters[x][y] == null) {
 						count++; // if there is not a letter there yet, increase the count
 					}
 					
 					// if there is a letter then make sure tempMax is the longest so far, and count is empty
 					else {
-						if (count > tempMax) {
-							tempMax = count;
+						if (count >= maxSpace) {
+							maxSpace = count;
 							count = 0;
 							startingIndex = tempStartingIndex;
 							tempStartingIndex = y + 1;
+							checked = true;
 						}
 						
 						else {
 							count = 0;
 							tempStartingIndex = y + 1;
+							checked = true;
 						}
 					}
 				}
 				
 				//maxSpace = Math.max(count, tempMax); // the longest contiguous stretch of empty squares
-				
-				if (count > tempMax) {
+				if (!checked) {
+				if (count >= maxSpace) {
 					maxSpace = count;
 					startingIndex = tempStartingIndex;
 				}
-				
-				else {
-					maxSpace = tempMax;
 				}
 				
-				System.out.format("%s: max: %d column: %d starting: %d\n", word, maxSpace, x, startingIndex);
+				//System.out.format("%s: max: %d column: %d starting: %d\n", word, maxSpace, x, startingIndex);
 				
 				if (maxSpace >= word.getLength()) {
+					System.out.println(word + " x = " + x + " , startingIndex = " + startingIndex);
 					options.put(x, startingIndex); // add to the possible indices
 				}
+				
 				
 			}
 		}
 		
 		// everything above, but for horizontal words
 		else {
-			for (int y=0; y<letters.length; y++) {
+			for (int y=0; y<letters[0].length; y++) {
 				count = 0;
-				tempMax = 0;
-				for (int x=0; x<letters[0].length; x++) {
+				maxSpace = 0;
+				startingIndex = 0;
+				tempStartingIndex = 0;
+				for (int x=0; x<letters.length; x++) {
+					checked = false;
 					if (letters[x][y] == null) {
 						count++;
 					}
 					
 					else {
-						if (count > tempMax) {
-							tempMax = count;
+						if (count >= maxSpace) {
+							maxSpace = count;
 							count = 0;
 							startingIndex = tempStartingIndex;
 							tempStartingIndex = x + 1;
+							checked = true;
 						}
 						
 						else {
 							count = 0;
 							tempStartingIndex = x + 1;
+							checked = true;
 						}
 					}
 				}
-				
-				if (count > tempMax) {
+				if (!checked) {
+				if (count >= maxSpace) {
 					maxSpace = count;
 					startingIndex = tempStartingIndex;
 				}
-				
-				else {
-					maxSpace = tempMax;
 				}
 				
-				System.out.format("%s: max: %d row: %d starting: %d\n", word, maxSpace, y, startingIndex);
+				
+				//System.out.format("%s: max: %d row: %d starting: %d\n", word, maxSpace, y, startingIndex);
 				
 				if (maxSpace >= word.getLength()) {
+					System.out.println(word + " y = " + y + " , startingIndex = " + startingIndex);
 					options.put(y, startingIndex);
 				}
 			}
 		}
+		
 		
 		return options;
 		
