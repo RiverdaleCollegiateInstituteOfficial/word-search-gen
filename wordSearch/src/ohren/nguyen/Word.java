@@ -7,8 +7,9 @@ import java.util.ArrayList;
  *
  */
 public class Word implements Comparable<Word>{
-	private ArrayList<Letter> letters;
-	private String word;
+	private ArrayList<Letter> letters;	// all the letters as Letter objects in the word
+	private String word;				// String of the word
+	
 	
 	/**
 	 * Constructor for word
@@ -28,6 +29,10 @@ public class Word implements Comparable<Word>{
 	}
 	
 	
+	/**
+	 * Gets the length of the word
+	 * @return the length of the word
+	 */
 	public int getLength() {
 		return letters.size();
 	}
