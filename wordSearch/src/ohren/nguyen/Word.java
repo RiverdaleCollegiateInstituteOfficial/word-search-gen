@@ -16,7 +16,7 @@ public class Word implements Comparable<Word>{
 	 * @param s the String to be made into a Word
 	 */
 	public Word(String s) {
-		// word = s.toUpperCase(); <-- do this for final version
+		word = s.toUpperCase();
 		word = s;
 		letters = new ArrayList<>();
 		
