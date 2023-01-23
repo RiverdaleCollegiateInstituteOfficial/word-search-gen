@@ -7,8 +7,8 @@ import java.util.ArrayList;
  *
  */
 public class Word implements Comparable<Word>{
-	private ArrayList<Letter> letters;	// all the letters as Letter objects in the word
 	private String word;				// String of the word
+	private ArrayList<Letter> letters;	// all the letters as Letter objects in the word
 	
 	
 	/**

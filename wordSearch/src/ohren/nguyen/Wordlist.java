@@ -39,7 +39,7 @@ public class Wordlist {
 	
 	
 	/**
-	 * Returns length of the word lsit
+	 * Returns length of the word list
 	 * @return the number of words in the word list
 	 */
 	public int getLength() {
