@@ -2,27 +2,16 @@ package ohren.nguyen;
 
 import java.util.Random;
 
-// ask what we use first 2 constructors for
 public class Letter {
 	private char character;
 	
 	
-	// TODO: typecast inside constructor instead?
 	/**
-	 * Creates
+	 * Creates Letter
 	 * @param c is the char type of the letter
 	 */
 	public Letter(char c) {
 		character = c;
-	}
-	
-	
-	/**
-	 * 
-	 * @param s is the String type of the letter
-	 */
-	public Letter(String s) {
-		character = s.charAt(0);
 	}
 	
 	

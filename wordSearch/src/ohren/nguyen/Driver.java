@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 // TODO:
-// make proper docstrings, comments, implement grid feature
+// make proper docstrings, comments
 public class Driver {
 	
 	
@@ -275,7 +275,13 @@ public class Driver {
 		System.out.println(grid);
 		
 		System.out.println(w); // for testing
-		System.out.println(grid.getDidNotFit()); // see what didn't fit, might want to label later
+		if (!(grid.getDidNotFit().equals(""))) {
+			System.out.println("Some words were not printed:");
+			System.out.print(grid.getDidNotFit());
+		}
+		else {
+			System.out.println("All the words were printed.");
+		}
 		space();
 	}
 	
