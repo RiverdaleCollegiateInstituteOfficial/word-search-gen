@@ -17,7 +17,6 @@ public class Word implements Comparable<Word>{
 	 */
 	public Word(String s) {
 		word = s.toUpperCase();
-		word = s;
 		letters = new ArrayList<>();
 		
 		// Makes each character into a Letter and then adds to letters

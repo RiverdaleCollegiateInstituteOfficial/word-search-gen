@@ -190,7 +190,7 @@ public class Driver {
 		// Grabs words of Wordlist from user
 		for (int x = 0; x < n; x++) {
 			System.out.print("WORD #" + (x + 1) + ": ");
-			Word word = new Word(in.nextLine());
+			Word word = new Word(in.nextLine().toUpperCase());
 			tempWordlist.setWord(word);
 		}
 		return tempWordlist;

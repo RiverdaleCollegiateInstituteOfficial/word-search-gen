@@ -3,6 +3,10 @@ package ohren.nguyen;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Creates a Word List object using input from user or file.txt
+ *
+ */
 public class Wordlist {
 	private String name;			// the name of the word list
 	private ArrayList<Word> list;	// the word list
@@ -80,13 +84,6 @@ public class Wordlist {
 	 */
 	@Override
 	public String toString() {
-		/* STYLE ONE
-		String output = name + ": ";
-		for (int x = 0; x < list.size(); x++) {
-			output += "\n" + list.get(x);
-		}
-		return output;
-		*/
 		return name + " " + list;
 	}
 	
