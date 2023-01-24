@@ -11,10 +11,6 @@ CRICKET
 RUGBY
 TRACK
 
-Friends:
-ZALEA
-MICHELLE
-
 Threes:
 CAT
 DOG
@@ -27,23 +23,9 @@ GAP
 RAP
 NAP
 
-Cats:
-BUDDY
-JORGE
-
-Fruit:
-APPLE
-MANGO
-PEACH
-
-Fish:
-MACKEREL
-TUNA
-SALMON
-
-Months:
-JANUARY
-FEBRUARY
-MARCH
+Empty:
+HAPPY
+PI
+SAD
 
 ---

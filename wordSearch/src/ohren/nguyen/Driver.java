@@ -190,8 +190,13 @@ public class Driver {
 		// Grabs words of Wordlist from user
 		for (int x = 0; x < n; x++) {
 			System.out.print("WORD #" + (x + 1) + ": ");
-			Word word = new Word(in.nextLine().toUpperCase());
-			tempWordlist.setWord(word);
+			String str = in.nextLine();
+			while (str.length() < 2) {
+				System.out.println("Please enter words of minimum 2 letters.");
+				str = in.nextLine();
+			}
+				Word word = new Word(str.toUpperCase());
+				tempWordlist.setWord(word);
 		}
 		return tempWordlist;
 	}
