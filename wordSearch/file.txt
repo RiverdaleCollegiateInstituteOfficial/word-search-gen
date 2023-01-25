@@ -23,9 +23,4 @@ GAP
 RAP
 NAP
 
-Empty:
-HAPPY
-PI
-SAD
-
 ---

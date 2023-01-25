@@ -184,15 +184,19 @@ public class Driver {
 		space();
 		System.out.print("How many words do you want? Enter an integer: ");
 		int n = in.nextInt(); 
-
-		// TODO: could try making integer input more robust
 		in.nextLine();
+		while (n < 1) {
+			System.out.print("Minimum 1 word: ");
+			n = in.nextInt();
+			in.nextLine();
+		}
+		// TODO: could try making integer input more robust
 		// Grabs words of Wordlist from user
 		for (int x = 0; x < n; x++) {
 			System.out.print("WORD #" + (x + 1) + ": ");
 			String str = in.nextLine();
 			while (str.length() < 2) {
-				System.out.println("Please enter words of minimum 2 letters.");
+				System.out.print("Enter a word of minimum 2 letters: ");
 				str = in.nextLine();
 			}
 				Word word = new Word(str.toUpperCase());
